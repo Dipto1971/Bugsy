@@ -17,3 +17,7 @@ Key features:
 - Dashboard for an overview of issues and performance metrics.
 
 Bugsy is the perfect tool for teams looking to enhance their issue tracking process and drive projects to completion smoothly and efficiently.
+
+#### Progress
+
+- 04 Building an API (6.55)

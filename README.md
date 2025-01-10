@@ -18,6 +18,6 @@ Key features:
 
 Bugsy is the perfect tool for teams looking to enhance their issue tracking process and drive projects to completion smoothly and efficiently.
 
-#### Progress
+## Progress
 
 - 04 Building an API (6.55)

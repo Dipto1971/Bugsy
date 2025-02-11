@@ -12,9 +12,9 @@ datasource db {
 
 model Issue {
   id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(255)
-  description String   @db.Text
-  status      Status   @default(OPEN)
+  title       String   @db.VarChar(255) //varchar(255 in MySQL)
+  description String   @db.Text //for long text, use Text
+  status      Status   @default(OPEN) // open, in_progress, closed
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

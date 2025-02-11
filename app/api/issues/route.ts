@@ -9,7 +9,7 @@ const createIssueSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const validation = createIssueSchema.safeParse(body);
+  const validation = createIssueSchema.safeParse(body); // Validate the incoming data
 
   if (!validation.success) {
     return NextResponse.json(validation.error.errors, { status: 400 }); //Client sent invalid data. Error: Bad Request,

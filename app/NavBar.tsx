@@ -13,7 +13,6 @@ const NavBar = () => {
   const currentPath = usePathname();
   // We need to convert this component to a Client-Side Component,
   // Because the usePathname hook is not supported on the server. This is a Browser API.
-  console.log(currentPath);
 
   const links = [
     { href: "/", label: "Dashboard" },

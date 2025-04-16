@@ -8,7 +8,11 @@ const createIssueSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  // request object of type NextRequest
+  // This function handles the POST request to create a new issue
   const body = await request.json();
+  // Parse the request body as JSON
+  // The body should contain the title and description of the issue
   const validation = createIssueSchema.safeParse(body); // Validate the incoming data
 
   if (!validation.success) {

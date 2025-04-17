@@ -12,14 +12,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas"; // Importing the validation schema
-import { z } from "zod";
-import { Text } from "@radix-ui/themes/dist/esm/components/callout.js";
-
-// interface IssueForm {
-//   // Defines the shape of the form data
-//   title: string;
-//   description: string;
-// }
+import { set, z } from "zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 // This infers the type from the zod schema, means we don't need to define the interface again
@@ -37,7 +32,7 @@ const NewIssuePage = () => {
   });
   // console.log(register("title"));
   const [error, setError] = useState("");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   return (
     <div className="max-w-xl">
       {/* max-w-xl means maximum width of 1000px */}
@@ -51,9 +46,11 @@ const NewIssuePage = () => {
         className=" space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
+            setIsSubmitting(true);
             await axios.post("/api/issues", data);
             router.push("/issues");
           } catch (error) {
+            setIsSubmitting(false);
             setError(
               "There was an error creating the issue. Please try again."
             );
@@ -63,7 +60,7 @@ const NewIssuePage = () => {
         <TextField.Root placeholder="Title" {...register("title")}>
           <TextField.Slot />
         </TextField.Root>
-        {errors.title && <Text color="red" >{errors.title.message}</Text>}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -71,10 +68,11 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        {errors.description && (
-          <Text color="red">{errors.description.message}</Text>
-        )}
-        <Button>Submit New Issue</Button>
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+
+        <Button disabled={isSubmitting}>
+          Submit New Issue {isSubmitting && <Spinner />}
+        </Button>
       </form>
     </div>
   );

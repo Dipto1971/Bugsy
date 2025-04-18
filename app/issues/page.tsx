@@ -33,7 +33,11 @@ const IssuesPage = async () => {
             <Table.Row key={issue.id}>
               <Table.Cell>
                 <Link href={`/issues/${issue.id}`}>
-                  <Button variant="ghost" className="w-full text-left">
+                  {/* On hover */}
+                  <Button
+                    variant="ghost"
+                    className="w-full text-left !cursor-pointer"
+                  >
                     {issue.title}
                   </Button>
                 </Link>

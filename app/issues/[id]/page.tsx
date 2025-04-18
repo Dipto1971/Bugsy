@@ -5,6 +5,7 @@ import { Heading } from "@radix-ui/themes/dist/cjs/index.js";
 import { notFound } from "next/navigation";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import delay from "delay";
 interface Props {
   params: {
     id: string;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const IssueDetailPage = async ({ params }: Props) => {
+  await delay(1000); // Simulate a delay for loadingx
   const issue = await prisma.issue.findUnique({
     where: {
       id: parseInt(params.id),

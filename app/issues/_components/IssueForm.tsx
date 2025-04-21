@@ -2,10 +2,9 @@
 // This needs to Client side code
 // -> We are using forms which requires user interaction
 // _components means out of the routing tree
-
 import React from "react";
 import { TextField, Button, Callout } from "@radix-ui/themes";
-import dynamic from "next/dynamic";
+import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -17,10 +16,6 @@ import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import { Issue } from "@prisma/client";
-
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false, // Not to render the component on the server side
-});
 
 type IssueFormData = z.infer<typeof issueSchema>;
 // This infers the type from the zod schema, means we don't need to define the interface again

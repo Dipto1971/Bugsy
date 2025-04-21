@@ -1,5 +1,4 @@
-import ErrorMessage from "./ErrorMessage";
-import Spinner from "./Spinner";
-import IssueStatusBadge from "./IssueStatusBadge";
-
-export { ErrorMessage, Spinner, IssueStatusBadge };
+export { default as ErrorMessage } from "./ErrorMessage";
+export { default as Spinner } from "./Spinner";
+export { default as IssueStatusBadge } from "./IssueStatusBadge";
+export { default as Skeleton } from "./Skeleton";

@@ -4,7 +4,7 @@
 
 import React from "react";
 import { TextField, Button, Callout } from "@radix-ui/themes";
-import SimpleMDE from "react-simplemde-editor";
+import dynamic from "next/dynamic";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -15,6 +15,10 @@ import { createIssueSchema } from "@/app/validationSchemas"; // Importing the va
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
+
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false, // Not to render the component on the server side
+});
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 // This infers the type from the zod schema, means we don't need to define the interface again

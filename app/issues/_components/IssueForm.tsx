@@ -12,7 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createIssueSchema } from "@/app/validationSchemas"; // Importing the validation schema
+import { issueSchema } from "@/app/validationSchemas"; // Importing the validation schema
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
@@ -22,7 +22,7 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ssr: false, // Not to render the component on the server side
 });
 
-type IssueFormData = z.infer<typeof createIssueSchema>;
+type IssueFormData = z.infer<typeof issueSchema>;
 // This infers the type from the zod schema, means we don't need to define the interface again
 // This is a type-safe way to define the form data shape
 
@@ -34,7 +34,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IssueFormData>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(issueSchema),
   });
   // console.log(register("title"));
   const [error, setError] = useState("");

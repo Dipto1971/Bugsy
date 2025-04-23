@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import { PrismaClient } from "@prisma/client";
-import IssueStatusBadge from "../components/IssueStatusBadge";
+import IssueStatusBadge from "../../components/IssueStatusBadge";
 import NewIssueButton from "./newIssueButton";
 
 const prisma = new PrismaClient();

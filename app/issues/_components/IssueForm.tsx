@@ -49,7 +49,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           try {
             setIsSubmitting(true);
             await axios.post("/api/issues", data);
-            router.push("/issues");
+            router.push("/issue/list");
           } catch (error) {
             setIsSubmitting(false);
             setError(

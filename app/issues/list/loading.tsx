@@ -2,7 +2,7 @@ import { Table } from "@radix-ui/themes";
 import React from "react";
 import { Skeleton } from "@/app/components";
 import "react-loading-skeleton/dist/skeleton.css";
-import NewIssueButton from "./newIssueButton";
+import NewIssueButton from "../list/newIssueButton";
 import prisma from "@/prisma/client";
 
 const LoadingIssuesPage = async () => {

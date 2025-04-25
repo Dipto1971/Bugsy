@@ -5,12 +5,14 @@ import Link from "next/link";
 import { AiFillBug } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import c_Names from "classnames";
-
+import { useSession } from "next-auth/react";
+import { Box } from "@radix-ui/themes";
 // In the classnaame object,
 // we can pass the classnames we want to render as keys and the condition as values.
 
 const NavBar = () => {
   const currentPath = usePathname();
+  const { status, data: session } = useSession();
   // We need to convert this component to a Client-Side Component,
   // Because the usePathname hook is not supported on the server. This is a Browser API.
 
@@ -26,21 +28,31 @@ const NavBar = () => {
         {" "}
         <AiFillBug />
       </Link>
+
       <ul className="flex space-x-4">
         {links.map((link) => (
-          <Link
-            key={link.href}
-            className={c_Names({
-              "text-zinc-900": currentPath === link.href,
-              "text-zinc-500": currentPath !== link.href,
-              "hover:text-zinc-800 transition-colors": true,
-            })}
-            href={link.href}
-          >
-            {link.label}
-          </Link>
+          <li key={link.href}>
+            <Link
+              className={c_Names({
+                "text-zinc-900": currentPath === link.href,
+                "text-zinc-500": currentPath !== link.href,
+                "hover:text-zinc-800 transition-colors": true,
+              })}
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          </li>
         ))}
       </ul>
+      <Box>
+        {status === "authenticated" && (
+          <Link href="/api/auth/signout">Sign Out</Link>
+        )}
+        {status === "unauthenticated" && (
+          <Link href="/api/auth/signin">Sign In</Link>
+        )}
+      </Box>
     </nav>
   );
 };

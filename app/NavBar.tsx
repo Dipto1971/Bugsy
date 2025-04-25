@@ -13,6 +13,7 @@ import {
   Flex,
   Text,
 } from "@radix-ui/themes";
+import Skeleton from "@/app/components/Skeleton";
 // In the classnaame object,
 // we can pass the classnames we want to render as keys and the condition as values.
 
@@ -41,7 +42,7 @@ export default NavBar;
 
 const AuthStatus = () => {
   const { data: session, status } = useSession();
-  if (status === "loading") return null;
+  if (status === "loading") return <Skeleton width="3rem" />;
 
   if (status === "unauthenticated") {
     return (

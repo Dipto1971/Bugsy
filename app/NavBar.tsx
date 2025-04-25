@@ -68,6 +68,8 @@ const NavBar = () => {
                     size="2"
                     radius="full"
                     className="cursor-pointer"
+                    referrerPolicy="no-referrer"
+                    // referrerPolicy is used to prevent the browser from sending the user's personal information to the server.
                   />
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>

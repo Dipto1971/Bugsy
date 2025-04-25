@@ -14,6 +14,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import Skeleton from "@/app/components/Skeleton";
+
 // In the classnaame object,
 // we can pass the classnames we want to render as keys and the condition as values.
 
